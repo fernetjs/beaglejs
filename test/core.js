@@ -1,4 +1,5 @@
 var expect = require('expect.js'),
+  request = require('request'),
   beagle = require('../lib/beagle.js'),
   Bone = require('../lib/bone.js'),
   testMeta = require('./utils/testMeta.js');
@@ -9,6 +10,47 @@ describe('BeagleJS', function(){
 
     it('should have a function named scrape()', function(){
       expect(beagle.scrape).to.be.a('function');
+    });
+
+    it('should allow to call it with an URL', function(done){
+      beagle.scrape("http://fernetjs.com", function(err, bone){
+
+        expect(err).to.be(null);
+        expect(bone).to.not.be(undefined);
+        
+        done();
+      });
+    });
+
+    it('should allow to call it with request options', function(done){
+      beagle.scrape({
+        url: "http://fernetjs.com",
+        headers: {'User-Agent': 'Mozilla/7'}
+      }, function(err, bone){
+
+        expect(err).to.be(null);
+        expect(bone).to.not.be(undefined);
+        
+        done();
+      });
+    });
+
+    it('should allow to call it with a Response object', function(done){
+      
+      request("http://fernetjs.com", function (error, response, body) {
+        if (error) {
+          callback(error);
+          return;
+        }
+
+        beagle.scrape(response, function(err, bone){
+
+          expect(err).to.be(null);
+          expect(bone).to.not.be(undefined);
+          
+          done();
+        });
+      });
     });
 
     it('should return an object type of Bone', function(done){
