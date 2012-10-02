@@ -70,7 +70,7 @@ npm install beagle
 
 (The MIT License)
 
-Copyright (c) 2012 Pablo Novas &lt;pjnovas@gmail.com&gt;
+Copyright (c) 2012 Pablo Novas &lt;pjnovas@gmail.com&gt;  
 Copyright (c) 2012 Matias Arriola &lt;matias.arriola@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
