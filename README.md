@@ -1,4 +1,4 @@
-##BeagleJS
+##BeagleJS [![Build Status](https://secure.travis-ci.org/fernetjs/beaglejs.png?branch=master)](http://travis-ci.org/fernetjs/beaglejs)
 
 Release a Beagle dog to scrape a web site for you.
 
