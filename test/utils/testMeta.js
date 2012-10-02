@@ -1,6 +1,6 @@
 var cheerio = require('cheerio'),
   request = require('request'),
-  parseUri = require('../../lib/parseUri').parseUri;
+  parseUri = require('./parseUri').parseUri;
 
 module.exports.getInfo = function (url, callback){
 
