@@ -2,16 +2,26 @@
 
 Release a Beagle dog to scrape a web site for you.
 
-The intention of this library is to get the relevant information of a site, like title, image and description.
+The intention of this library is to get the relevant information of a site like title, image and description.
 
 ### How it works?
 
-Scraping the meta-data and falling-back in this order:
-1. Facebook OpenGraph:
-  og:title | og:image | og:description
-2. Metas 
-  meta[name] | meta[image_src] | meta[description]
-3. Looking into DOM (needs to be improved)
+Scraping the meta-data and falling-back in this order:  
+
+1. **Facebook OpenGraph**
+  >  og:title  
+  >  og:image  
+  >  og:description  
+
+2. **Metas**
+  >  meta[name]  
+  >  meta[image_src]  
+  >  meta[description]  
+
+3. **Looking into DOM** (needs to be improved)
+  >  title tag  
+  >  img tags  
+  >  some p or div  
 
 ### How to use it?
 
