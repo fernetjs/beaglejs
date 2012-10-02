@@ -1,0 +1,29 @@
+{
+  "name": "beaglejs",
+  "version": "0.1.0",
+  "description": "release a beagle to scrap a web site for you",
+  "main": "beagle.js",
+  "dependencies": {
+    "cheerio": "0.9.x",
+    "request": "2.11.4"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": ">=0.1.2"
+  },
+  "directories": { 
+    "lib" : "./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fernetjs/beaglejs.git"
+  },
+  "keywords": [
+    "scrap",
+    "scraper",
+    "scraperJS",
+    "site scraper",
+    "beagle"
+  ],
+  "license": "MIT"
+}
