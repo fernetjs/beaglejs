@@ -1,8 +1,11 @@
 {
-  "name": "beaglejs",
+  "name": "beagle",
   "version": "0.1.0",
-  "description": "release a beagle to scrap a web site for you",
-  "main": "beagle.js",
+  "description": "Release a Beagle dog to scrape a web site for you.",
+  "main" : "index.js",
+  "directories": { 
+    "lib" : "./lib"
+  },
   "dependencies": {
     "cheerio": "0.9.x",
     "request": "2.11.4"
@@ -11,9 +14,6 @@
     "mocha": "*",
     "expect.js": ">=0.1.2"
   },
-  "directories": { 
-    "lib" : "./lib"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/fernetjs/beaglejs.git"
@@ -21,7 +21,6 @@
   "keywords": [
     "scrap",
     "scraper",
-    "scraperJS",
     "site scraper",
     "beagle"
   ],
