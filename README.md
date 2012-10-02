@@ -25,7 +25,7 @@ npm install beagle
 ```javascript
   var beagle = require('beagle');
 
-  beagle.scrap("http://fernetjs.com", function(err, bone){
+  beagle.scrape("http://fernetjs.com", function(err, bone){
     console.log(bone.title);
   });
 ```
@@ -40,7 +40,7 @@ npm install beagle
       return;
     }
 
-    beagle.scrap(response, function(err, bone){
+    beagle.scrape(response, function(err, bone){
       console.log(bone.preview);
     });
   });
