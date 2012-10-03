@@ -1,6 +1,6 @@
 var cheerio = require('cheerio'),
   request = require('request'),
-  parseUri = require('./parseUri').parseUri;
+  urlParse = require('url').parse;
 
 module.exports.getInfo = function (url, callback){
 
@@ -32,11 +32,8 @@ module.exports.getInfo = function (url, callback){
         pageTitle = $('title').text();
     }
 
-    var host = parseUri(url);
-    if (host.port)
-      host = host.protocol + '://' + host.host + ':' + host.port;
-    else 
-      host = host.protocol + '://' + host.host;
+    var host = urlParse(url);
+    host = host.protocol + '://' + host.host;
 
     var images = [];
 
