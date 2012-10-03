@@ -1,8 +1,9 @@
 var expect = require('expect.js'),
   request = require('request'),
   beagle = require('../lib/beagle.js'),
-  Bone = require('../lib/bone.js'),
-  testMeta = require('./utils/testMeta.js');
+  Bone = require('../lib/bone.js');
+
+var host = "http://localhost:3000/";
 
 describe('BeagleJS', function(){
 
@@ -13,7 +14,7 @@ describe('BeagleJS', function(){
     });
 
     it('should allow to call it with an URL', function(done){
-      beagle.scrape("http://fernetjs.com", function(err, bone){
+      beagle.scrape(host, function(err, bone){
 
         expect(err).to.be(null);
         expect(bone).to.not.be(undefined);
@@ -24,7 +25,7 @@ describe('BeagleJS', function(){
 
     it('should allow to call it with request options', function(done){
       beagle.scrape({
-        url: "http://fernetjs.com",
+        url: host,
         headers: {'User-Agent': 'Mozilla/7'}
       }, function(err, bone){
 
@@ -37,7 +38,7 @@ describe('BeagleJS', function(){
 
     it('should allow to call it with a Response object', function(done){
       
-      request("http://fernetjs.com", function (error, response, body) {
+      request(host, function (error, response, body) {
         if (error) {
           callback(error);
           return;
@@ -55,7 +56,7 @@ describe('BeagleJS', function(){
 
     it('should return an object type of Bone', function(done){
       
-      beagle.scrape("http://fernetjs.com", function(err, bone){
+      beagle.scrape(host, function(err, bone){
 
         expect(err).to.be(null);
         expect(bone).to.be.a(Bone);
@@ -66,20 +67,9 @@ describe('BeagleJS', function(){
     });
 
     describe('Bone', function(){
-      var info = {},
-        url = "http://fernetjs.com/2012/07/nodejs-en-la-nube-con-nodejitsu-y-nodester/";
 
-      before(function (done){
-        testMeta.getInfo(url, function (err, _info){
-          info = _info;
-          done();
-        });
-      });
-  
       it('should have a property uri with URL properties', function(done){
-        var host = "fernetjs.com";
-
-        beagle.scrape(url, function(err, bone){
+        beagle.scrape(host + "opengraph", function(err, bone){
           
           expect(bone.uri).to.not.be(undefined);
           
@@ -88,52 +78,59 @@ describe('BeagleJS', function(){
             expect(bone.uri[keys[i]]).to.not.be(undefined);
           }
 
-          expect(bone.uri.host).to.be.equal(host);
-
           done();
         });
 
       });
 
-      it('should have a property images with an Array of urls', function(done){
-        beagle.scrape(url, function(err, bone){
+      it('should get correctly Open Graph data if it is present', function(done){
+        beagle.scrape(host + "opengraph", function(err, bone){
 
-          expect(bone.images).to.not.be(undefined);
+          expect(bone.title).to.be.equal('OG-Title');
+          
           expect(bone.images).to.be.an('array');
+          expect(bone.images.length).to.be.equal(1);
+          expect(bone.images[0]).to.be.equal(host + 'OG-Image');
 
-          for(var i=0; i< info.images.length; i++){
-            expect(bone.images[i]).to.be.equal(info.images[i]);
+          expect(bone.preview).to.be.equal('OG-Description');
+
+          done();
+        });
+      });
+
+      it('should get correctly Meta data if it is present', function(done){
+        beagle.scrape(host + "metadata", function(err, bone){
+
+          expect(bone.title).to.be.equal('META-Title');
+          
+          expect(bone.images).to.be.an('array');
+          expect(bone.images.length).to.be.equal(1);
+          expect(bone.images[0]).to.be.equal(host + 'META-Image');
+
+          expect(bone.preview).to.be.equal('META-Description');
+
+          done();
+        });
+      });
+
+      it('should get data from DOM as downfall for OG & META', function(done){
+        beagle.scrape(host + "dom", function(err, bone){
+
+          expect(bone.title).to.be.equal('DOM-Title');
+          
+          expect(bone.images).to.be.an('array');
+          expect(bone.images.length).to.be.equal(3);
+          
+          for(var i=0; i < 3; i++){
+            expect(bone.images[i]).to.be.equal(host + 'DOM-Image' + i);
           }
 
-          done();
-        });
-      });
-
-      it('should have a property title with the site title', function(done){
-        beagle.scrape(url, function(err, bone){
-
-          expect(bone.title).to.not.be(undefined);
-          expect(bone.title).to.be.a('string');
-
-          expect(bone.title).to.be.equal(info.title);
-
-          done();
-        });
-
-      });
-
-      it('should have a property preview with a brief description of the site', function(done){
-        beagle.scrape(url, function(err, bone){
-
-          expect(bone.preview).to.not.be(undefined);
-          expect(bone.preview).to.be.a('string');
-
-          expect(bone.preview).to.be.equal(info.preview);
+          expect(bone.preview).to.be.equal('DOM-Description');
 
           done();
         });
       });
-      
+
     });
     
   });
