@@ -1,3 +1,6 @@
+
+require("blanket")(["/lib/scraper.js", "/lib/bone.js", "/lib/beagle.js"]);
+
 var expect = require('expect.js'),
   request = require('request'),
   beagle = require('../lib/beagle.js'),
