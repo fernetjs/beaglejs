@@ -1,7 +1,4 @@
 language: node_js
 node_js:
-  - 0.8
-before_script:
-  - sudo node test/testServer.js ../ 3000 &
-  - sleep 5
-script: make test
+  - '0.10'
+script: './node_modules/.bin/grunt travis'

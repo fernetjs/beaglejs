@@ -2,9 +2,9 @@
   "name": "beagle",
   "version": "0.1.1",
   "description": "Release a Beagle dog to scrape a web site for you.",
-  "main" : "index.js",
-  "directories": { 
-    "lib" : "./lib"
+  "main": "index.js",
+  "directories": {
+    "lib": "./lib"
   },
   "engines": {
     "node": "0.8.x"
@@ -17,10 +17,18 @@
     "mocha": "*",
     "expect.js": ">=0.1.2",
     "express": "3.0.x",
-    "blanket": "0.9.8"
+    "blanket": "0.9.8",
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-mocha-cov": "~0.3.0",
+    "grunt-express-server": "~0.4.19",
+    "mocha-term-cov-reporter": "~0.2.0"
   },
   "scripts": {
-    "test": "make test"
+    "blanket": {
+      "pattern": "/lobby/lib/"
+    },
+    "test": "./node_modules/.bin/grunt test"
   },
   "repository": {
     "type": "git",

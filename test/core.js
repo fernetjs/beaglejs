@@ -16,6 +16,18 @@ describe('BeagleJS', function(){
       expect(beagle.scrape).to.be.a('function');
     });
 
+    it('should throw an error if options are wrong', function(done){
+      beagle.scrape("htt://", function(err, bone){
+        expect(err).to.be.ok();
+
+        beagle.scrape({ urlNot: "test" }, function(err, bone){
+          expect(err).to.be.ok();
+          expect(err.message).to.be.equal("cannot scrape that, expected property 'url' or 'uri'");
+          done();
+        });
+      });
+    });
+
     it('should allow to call it with an URL', function(done){
       beagle.scrape(host, function(err, bone){
 
