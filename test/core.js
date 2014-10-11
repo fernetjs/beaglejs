@@ -134,17 +134,29 @@ describe('BeagleJS', function(){
           expect(bone.title).to.be.equal('DOM-Title');
           
           expect(bone.images).to.be.an('array');
-          expect(bone.images.length).to.be.equal(3);
+          expect(bone.images.length).to.be.equal(4);
           
-          for(var i=0; i < 3; i++){
+          for(var i=0; i < 2; i++){
             expect(bone.images[i]).to.be.equal(host + 'DOM-Image' + i);
           }
+
+          expect(bone.images[2]).to.be.equal("http://example.com/DOM-Image2");
+          expect(bone.images[3]).to.be.equal("http://www.example.com/DOM-Image3");
 
           expect(bone.preview).to.be.equal('DOM-Description');
 
           done();
         });
       });
+
+      it('should get correctly Image of favicon', function(done){
+        beagle.scrape(host + "favicon", function(err, bone){
+          expect(bone.favicon).to.be.an('string');
+          expect(bone.favicon).to.be.equal('http://example.com/someicon.png');
+          done();
+        });
+      });
+
 
     });
     
