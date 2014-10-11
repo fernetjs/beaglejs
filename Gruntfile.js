@@ -50,7 +50,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-mocha-cov');
 
-  grunt.registerTask('test', ['express:test', 'mochacov:unit', 'mochacov:coverage', 'mochacov:html']);
-  grunt.registerTask('travis', ['express:test', 'mochacov:unit', 'mochacov:coverage', 'mochacov:coveralls']);
+  var testStack = [
+      "express:test"
+    , "mochacov:unit"
+    , "mochacov:coverage"
+  ];
+
+  grunt.registerTask('test', testStack.concat(['mochacov:html']));
+  grunt.registerTask('travis', testStack);
   grunt.registerTask('default', 'test');
 };
