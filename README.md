@@ -1,4 +1,4 @@
-##BeagleJS [![Build Status](https://secure.travis-ci.org/fernetjs/beaglejs.png?branch=master)](http://travis-ci.org/fernetjs/beaglejs)
+##BeagleJS [![Build Status](https://secure.travis-ci.org/fernetjs/beaglejs.png?branch=master)](http://travis-ci.org/fernetjs/beaglejs) [![NPM version](https://badge.fury.io/js/beagle.png)](http://badge.fury.io/js/beagle)
 
 Release a Beagle dog to scrape a web site for you.
 
@@ -62,6 +62,7 @@ npm install beagle
   title: [string], //site title
   images: [array:string], //url of images found
   preview: [string] //site brief description (max 250c) 
+  favicon: [string] //url of favicon
   
   url: [string], // called url
   origin: [string] //protocol + host + port of url
@@ -75,6 +76,29 @@ npm install beagle
   }
 }
 ```
+
+### Changelog
+
+#### 0.2.0
+* Improved Develop build with GruntJS
+* New property favicon and some fixes of Images URLs - Thanks to [loneranger](https://github.com/anubhavsahoo)
+
+#### 0.1.1
+* Initial Release
+
+### Contribute
+
+1. Fork this repo
+2. run `npm install`
+3. Create the tests for the new functionality or bug case
+4. Put your awesome code
+5. run `grunt test` [install grunt-cli](http://gruntjs.com/getting-started#installing-the-cli)
+6. Please keep code coverage at 100% (check it with `coverage.html` generated at root folder)
+7. All good?, place a pull request
+
+
+### Contributors
+* [loneranger](https://github.com/anubhavsahoo)
 
 ## License 
 
